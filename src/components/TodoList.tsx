@@ -59,10 +59,10 @@ console.log('tasks', tasks)
         <section className={styles.tasksContainer}>
           <img src={todoListIcon} />
           <div className={styles.messageContainer}>
-            <strong className={styles.noTaksMessage}>
+            <strong className={styles.noTaskMessage}>
               Você ainda não tem tarefas cadastradas
             </strong>
-            <span className={styles.noTaksMessage}>
+            <span className={styles.noTaskMessage}>
               Crie tarefas e organize seus itens a fazer
             </span>
           </div>
