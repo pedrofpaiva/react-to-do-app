@@ -3,8 +3,7 @@ import todoListIcon from "../assets/todo-list.svg";
 import { useState } from "react";
 import { Circle, CheckCircle, Trash } from "@phosphor-icons/react";
 
-export function TodoList({ tasks, deleteTask, handleCheckTask}) {
-  const [isChecked, setIsChecked] = useState(true);
+export function TodoList({ tasks, deleteTask, handleCheckTask }) {
   const [checkedTasks, setCheckedTasks] = useState({});
 
   const handleCheck = (index) => {
@@ -13,51 +12,18 @@ export function TodoList({ tasks, deleteTask, handleCheckTask}) {
       [index]: !prevState[index],
     }));
     handleCheckTask(checkedTasks);
-
   };
-console.log('tasks', tasks)
 
-  const handleDeleteTask = (index: string | number) => {
+  const handleDeleteTask = (index) => {
     const taskToDelete = tasks[index];
     deleteTask(taskToDelete);
   };
 
-  return (
-    <>
-      {tasks.length > 0 &&
-        tasks.map((item, key) => (
-          <div className={styles.taskElement} key={key}>
-            <div className={styles.taskContent}>
-              <button
-                className={styles.checkBox}
-                onClick={() => handleCheck(key)}
-              >
-                {isChecked ? (
-                  <Circle weight="bold" />
-                ) : (
-                  <CheckCircle className={styles.checkCircle} weight="fill" />
-                )}
-              </button>
-              <p
-                className={
-                  checkedTasks[key] ? `${styles.checkedText}` : undefined
-                }
-              >
-                {item}
-              </p>
-            </div>
-            <button
-              onClick={() => handleDeleteTask(key)}
-              className={styles.trashButton}
-            >
-              <Trash weight="bold" />
-            </button>
-          </div>
-        ))}
-
-      {tasks.length === 0 && (
+  if (tasks.length === 0) {
+    return (
+      <>
         <section className={styles.tasksContainer}>
-          <img src={todoListIcon} />
+          <img src={todoListIcon} alt="Todo List" />
           <div className={styles.messageContainer}>
             <strong className={styles.noTaskMessage}>
               Você ainda não tem tarefas cadastradas
@@ -67,7 +33,38 @@ console.log('tasks', tasks)
             </span>
           </div>
         </section>
-      )}
+      </>
+    );
+  }
+
+  return (
+    <>
+      {tasks.map((item, index) => {
+        const isChecked = !!checkedTasks[index];
+        return (
+          <div className={styles.taskElement} key={index}>
+            <div className={styles.taskContent}>
+              <button
+                className={styles.checkBox}
+                onClick={() => handleCheck(index)}
+              >
+                {isChecked ? (
+                  <CheckCircle className={styles.checkCircle} weight="fill" />
+                ) : (
+                  <Circle weight="bold" />
+                )}
+              </button>
+              <p className={isChecked ? styles.checkedText : undefined}>{item}</p>
+            </div>
+            <button
+              onClick={() => handleDeleteTask(index)}
+              className={styles.trashButton}
+            >
+              <Trash weight="bold" />
+            </button>
+          </div>
+        );
+      })}
     </>
   );
 }

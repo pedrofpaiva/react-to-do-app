@@ -12,7 +12,6 @@ export function TaskComponent({ tasks, deleteTask }: TaskComponentProps) {
   
   const handleCheckTask = (checkedTasks: { [s: string]: unknown; } | ArrayLike<unknown>) => {
     const completed = Object.values(checkedTasks).filter(Boolean).length + 1;
-    console.log('completed', completed)
     setCompletedTasks(completed);
   }
 
