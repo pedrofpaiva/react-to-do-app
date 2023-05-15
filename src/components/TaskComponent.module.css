@@ -1,135 +1,142 @@
 .container {
-  align-items: center;
   display: flex;
+  align-items: center;
   flex-direction: column;
+  width: 100%;
   margin-top: 88px;
   padding: 0 16px 0 16px;
+
+}
+
+.header {
+  max-width: 736px;
   width: 100%;
-  }
-  
-  .counter {
-  align-items: center;
-  background: var(--gray-400);
-  border-radius: 999px;
-  color: var(--gary-200);
-  display: flex;
-  flex-direction: column;
-  font-size: 12px;
-  font-weight: 700;
-  justify-content: center;
-  line-height: 1px;
-  padding: 2px 8px;
-  }
-  
-  .createdTask {
-  color: var(--blue);
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 17px;
-  }
-  
-  .done {
-  color: var(--purple);
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 17px;
-  }
-  
-  .header {
   display: flex;
   justify-content: space-between;
-  max-width: 736px;
-  width: 100%;
-  }
-  
-  .messageContainer{
-  display: flex;
-  flex-direction: column;
-  }
-  
-  .noTaskMessage {
-  color: var(--gray-300);
-  font-size: 16px;
-  line-height: 22.4px;
-  text-align: center
-  }
-  
-  .taskContent {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  padding: 1rem;
-  width: 100%;
-  }
-  
-  .taskContent p {
-  line-height: 19.6px;
-  }
-  
-  .taskElement {
-  align-items: center;
-  background-color: var(--gray-500);
-  border: 1px solid var(--gray-400);
-  border-radius: 8px;
-  display: flex;
-  height: 72px;
-  margin-bottom: 12px;
-  max-width: 736px;
-  padding: 1rem;
-  width: calc(100% - 16px);
-  }
-  
-  .taskElement button {
-  cursor: pointer;
-  }
-  
-  .tasksContainer {
-  align-items: center;
-  border-top: 1px solid var(--gray-500);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  height: 244px;
-  justify-content: center;
-  max-width: 736px;
-  padding: 64px 24px;
-  width: 100%;
-  }
-  
-  .titleWrapper {
+}
+
+.titleWrapper {
   display: flex;
   gap: 8px;
   margin-bottom: 1.5rem;
-  }
+}
+
+.createdTask {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--blue);
+}
+
+.done {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--purple);
+}
+
+.counter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 8px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1px;
+  color: var(--gary-200);
+  background: var(--gray-400);
+  border-radius: 999px;
+}
+
+.tasksContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 64px 24px;
+  gap: 16px;
+  max-width: 736px;
+  height: 244px;
+  border-top: 1px solid var(--gray-500);
   
-  .trashButton {
+}
+
+.noTaksMessage {
+  font-size: 16px;
+  line-height: 22.4px;
+  color: var(--gray-300);
+  text-align: center
+}
+
+.messageContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.taskElement {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--gray-400);
+  border-radius: 8px;
+  padding: 1rem;
+  width: calc(100% - 16px);
+  max-width: 736px;
+  height: 72px;
+  background-color: var(--gray-500);
+  margin-bottom: 12px;
+}
+
+.taskElement button {
+  cursor: pointer;
+}
+
+.checkBox {
+  color: var(--blue);
+  width: 18px;
+  top: 4px;
+  left: 4px;
+  width: 20px;
+  background: transparent;
+}
+
+.checkBox :hover {
+  color: var(--blue-dark);
+}
+
+.trashButton {
   background: transparent;
   color: var(--gray-300);
   width: 20px;
-  }
-  
-  .trashButton :hover {
+}
+
+.trashButton :hover {
   color: #E25858;
-  }
-  
-  .checkBox {
-  background: transparent;
-  color: var(--blue);
-  left: 4px;
-  top: 4px;
-  width: 20px;
-  }
-  
-  .checkBox :hover {
-  color: var(--blue-dark);
-  }
-  
-  .checkCircle {
+}
+
+.taskContent {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 1rem;
+}
+
+.taskContent p {
+  line-height: 19.6px;
+}
+
+.checkedText {
+  color: var(--gray-300);
+  text-decoration-line: line-through;
+}
+
+.checkCircle {
   color: var(--purple-dark);
   width: 20px;
-  }
-  
-  .checkCircle :hover {
+}
+
+.checkCircle :hover {
   color: var(--purple)
-  }
+}
