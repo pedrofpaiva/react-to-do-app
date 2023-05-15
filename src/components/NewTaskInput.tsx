@@ -1,6 +1,6 @@
 import styles from "./NewTaskInput.module.css";
 import { PlusCircle } from "@phosphor-icons/react";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import { TaskComponent } from "./TaskComponent";
 import { FormEvent, ChangeEvent, KeyboardEvent } from "react";
 
@@ -21,6 +21,9 @@ export function NewTaskInput() {
 
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
+      if (newTask.replace(/\s/g, '') === "") {
+        return;
+      }
       handleCreateNewTask(event);
     }
   };
@@ -32,8 +35,8 @@ export function NewTaskInput() {
     setTasks(updatedTaskList);
   };
 
-  const isTaskInputEmpty = newTask.length === 0
-
+  const isTaskInputEmpty = newTask.length === 0 || newTask.replace(/\s/g, '') === ""
+ 
   return (
     <>
       <form className={styles.newTaskForm}>
