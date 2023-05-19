@@ -5,8 +5,9 @@ import { TaskComponent } from "./TaskComponent";
 import { FormEvent, ChangeEvent, KeyboardEvent } from "react";
 
 export function NewTaskInput() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<string[]>([]);
   const [newTask, setNewTask] = useState("");
+
 
   const handleTextChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setNewTask(event.target.value);
@@ -14,7 +15,6 @@ export function NewTaskInput() {
 
   const handleCreateNewTask = (event: FormEvent) => {
     event.preventDefault();
-
     setTasks([...tasks, newTask]);
     setNewTask("");
   };
@@ -28,7 +28,7 @@ export function NewTaskInput() {
     }
   };
 
-  const deleteTask = (taskToDelete: any) => {
+  const deleteTask = (taskToDelete: Object) => {
     const updatedTaskList = tasks.filter((item) => {
       return item !== taskToDelete;
     });
@@ -36,22 +36,21 @@ export function NewTaskInput() {
   };
 
   const isTaskInputEmpty = newTask.length === 0 || newTask.replace(/\s/g, '') === ""
- 
   return (
-    <>
-      <form className={styles.newTaskForm}>
-        <textarea
-          onKeyDown={handleKeyPress}
-          value={newTask}
-          onChange={handleTextChange}
-          placeholder="Adicione uma nova tarefa"
-        />
-        <button type="button" disabled={isTaskInputEmpty} onClick={handleCreateNewTask}>
-          <PlusCircle color="#F2F2F2" size={16} weight="bold" />
-          Criar
-        </button>
-      </form>
+    <div className={styles.tasksContainer}>
+        <form className={styles.newTaskForm}>
+          <textarea
+            onKeyDown={handleKeyPress}
+            value={newTask}
+            onChange={handleTextChange}
+            placeholder="Adicione uma nova tarefa"
+            />
+          <button type="button" disabled={isTaskInputEmpty} onClick={handleCreateNewTask}>
+            <PlusCircle color="#F2F2F2" size={16} weight="bold" />
+            Criar
+          </button>
+        </form>
       <TaskComponent tasks={tasks} deleteTask={deleteTask} />
-    </>
+    </div>
   );
 }

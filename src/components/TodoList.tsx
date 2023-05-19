@@ -1,23 +1,45 @@
 import styles from "./TaskComponent.module.css";
 import todoListIcon from "../assets/todo-list.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Circle, CheckCircle, Trash } from "@phosphor-icons/react";
 
-export function TodoList({ tasks, deleteTask, handleCheckTask }) {
-  const [checkedTasks, setCheckedTasks] = useState({});
+interface TodoListProps {
+  tasks: Array<TodoListProps>
+  deleteTask: Function
+  handleCheckTask: (checkedTasks: Record<number, boolean>) => void}
 
-  const handleCheck = (index) => {
+export function TodoList({ tasks, deleteTask, handleCheckTask }: TodoListProps) {
+  console.log('deleteTask', deleteTask)
+  const [checkedTasks, setCheckedTasks] = useState<Record<number, boolean>>({});
+  useEffect(() => {
+    handleCheckTask(checkedTasks);
+  }, [checkedTasks, handleCheckTask]);
+
+  const handleCheck = (index: number) => {
     setCheckedTasks((prevState) => ({
       ...prevState,
       [index]: !prevState[index],
     }));
-    handleCheckTask(checkedTasks);
   };
 
-  const handleDeleteTask = (index) => {
+  const handleDeleteTask = (index: any) => {
     const taskToDelete = tasks[index];
+    const isChecked = checkedTasks[index];
+  
+    if (isChecked) {
+      setCheckedTasks((prevState) => {
+        const updatedCheckedTasks = Object.values(prevState).filter((item, i) => {
+          return i !== index;
+        });
+        return updatedCheckedTasks;
+      });
+  
+      handleCheckTask(index);
+    }
+  
     deleteTask(taskToDelete);
   };
+  
 
   if (tasks.length === 0) {
     return (

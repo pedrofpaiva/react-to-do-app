@@ -1,13 +1,12 @@
 import "./global.css";
 import { TopBar } from "./components/TopBar";
-import { TasksContainer } from "./components/TasksContainer";
-import { TaskComponent } from "./components/TaskComponent";
+import { NewTaskInput } from "./components/NewTaskInput";
 
 function App() {
   return (
     <>
       <TopBar />
-      <TasksContainer />
+      <NewTaskInput />
     </>
   );
 }

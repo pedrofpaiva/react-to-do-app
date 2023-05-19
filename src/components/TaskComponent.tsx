@@ -3,17 +3,20 @@ import styles from "./TaskComponent.module.css";
 import { TodoList } from "./TodoList";
 
 interface TaskComponentProps {
-  tasks?: object;
+  tasks?: Array<TaskComponentProps> ;
   deleteTask?: any;
 }
 
 export function TaskComponent({ tasks, deleteTask }: TaskComponentProps) {
   const [completedTasks, setCompletedTasks] = useState(0);
-  
-  const handleCheckTask = (checkedTasks: { [s: string]: unknown; } | ArrayLike<unknown>) => {
-    const completed = Object.values(checkedTasks).filter(Boolean).length + 1;
+
+  const handleCheckTask = (checkedTasks: Object) => {
+    console.log(typeof checkedTasks)
+    const completed = Object.values(checkedTasks).filter(Boolean).length;
     setCompletedTasks(completed);
-  }
+  };
+
+
 
   let numberOfTasks = tasks?.length;
   return (
@@ -28,7 +31,7 @@ export function TaskComponent({ tasks, deleteTask }: TaskComponentProps) {
           <span className={styles.counter}>{completedTasks} de {numberOfTasks}</span>
         </div>
       </div>
-      <TodoList tasks={tasks} deleteTask={deleteTask} handleCheckTask={handleCheckTask}/>
+      <TodoList tasks={tasks} deleteTask={deleteTask} handleCheckTask={handleCheckTask} />
     </div>
   );
 }
